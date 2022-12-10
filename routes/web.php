@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProyectoresController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,6 +24,14 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::resource("proyectores",ProyectoresController::class)
+->middleware(['auth:sanctum','verified'])
+->names('admin.proyectores');
+
+Route::get("get-proyectores",[ProyectoresController::class,"getProyectores"])
+->middleware(['auth:sanctum','verified'])
+->name('admin.get-proyectores');
 
 Route::middleware([
     'auth:sanctum',
