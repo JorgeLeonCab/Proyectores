@@ -66,7 +66,7 @@ import Apartado from './apartado.vue'
 export default {
     data(){
         return {
-            proyectores: [],
+            proyectores: [''],
             mostrar_componente_apartar: false,
             id_elemento: 0,
         }
@@ -85,7 +85,6 @@ export default {
             const api = `get-proyectores`;
             const data = await axios.get(api);
             this.proyectores = data.data;
-            console.log(this.proyectores.length);
         },
         componenteApartar(id){
             this.mostrar_componente_apartar = true;

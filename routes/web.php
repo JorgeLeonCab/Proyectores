@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProyectoresController;
+use App\Http\Controllers\ProyectorHoraController;
+use App\Models\Proyector_hora;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,6 +34,10 @@ Route::resource("proyectores",ProyectoresController::class)
 Route::get("get-proyectores",[ProyectoresController::class,"getProyectores"])
 ->middleware(['auth:sanctum','verified'])
 ->name('admin.get-proyectores');
+
+Route::get("get-reservas/{proyector_id}",[ProyectorHoraController::class,"getReservas"])
+->middleware(['auth:sanctum','verified'])
+->name('admin.get-reservas');
 
 Route::middleware([
     'auth:sanctum',
