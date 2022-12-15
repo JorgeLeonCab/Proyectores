@@ -9,14 +9,16 @@
                     Seleecione el horario de su reserva
                 </div>
                 <div>
+                    <h1 class="p-3">{{ hora_actual.substring(0,hora_actual.indexOf(',')-1) }}</h1>
                     <section class="inline-block" v-for="(horario, indice) in horarios_disponibles" :key="indice">
                         <article 
+                            v-if="horario[0] != '-'"
                             @click="assingValue(horario)" 
                             class="p-3 border-2 border-black cursor-pointer hover:bg-stone-100"
                             :class="(selected == horario) ? 'bg-stone-100':'bg-stone-200'"
                         >
-                            <p :class=" (horario[0] == '-') ? 'text-red-400':''">
-                                {{ (horario[0] == '-') ? horario.substr(1,horario.length):horario }}
+                            <p>
+                                {{ horario }}
                             </p>
                         </article>
                     </section>
@@ -62,6 +64,7 @@
                     '19:00 - 20:29',
                     '20:30 - 22:00'
                 ],
+                hora_actual: '',
                 selected: '',
                 msg: {
                     estado:true,
@@ -77,10 +80,18 @@
         },
         mounted(){
             this.getReservas();
+            this.prueba();
         },
         methods: {
             prueba(){
-                console.log(this.horarios_disponibles.indexOf('Hola mundo'));
+                let x = '100';
+                let hoy = new Date();
+                this.hora_actual = hoy.toLocaleString();
+                console.log(this.hora_actual[this.hora_actual.indexOf(',') + 2]);
+                console.log(this.hora_actual);
+                console.log(x + 1);
+                let y = Number(x);
+                console.log(y);
             },
             async getReservas(){
                 const api =`get-reservas/${this.id_elemento}`;

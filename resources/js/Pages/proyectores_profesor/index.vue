@@ -48,9 +48,9 @@
                     </section>
                 </div>
                 <div v-else>
-                    <p class="uppercase font-bold py-5">
+                    <h1 class="uppercase font-bold py-5">
                         no hay proyectores disponibles
-                    </p>
+                    </h1>
                 </div>
             </div>
         </div>

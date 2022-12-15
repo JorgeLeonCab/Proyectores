@@ -4,6 +4,7 @@ use App\Http\Controllers\ProyectoresController;
 use App\Http\Controllers\ProyectorHoraController;
 use App\Models\Proyector_hora;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -45,6 +46,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Redirect::route('admin.proyectores.index');
     })->name('dashboard');
 });
