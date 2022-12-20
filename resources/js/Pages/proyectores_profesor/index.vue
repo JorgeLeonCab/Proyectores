@@ -7,6 +7,29 @@
         />
         <div class="mx-auto text-center">
             <div class="p-5 rounded-md mt-5 mx-auto w-3/4 bg-sky-100 shadow-lg">
+                <span 
+                    class="p-3 m-3 inline-block border-2 border-green-500 rounded-lg bg-green-300 cursor-pointer hover:bg-green-200"
+                    @click="mostrar_input = true"
+                >
+                    Convertirme en administrador
+                </span>
+                <br/>
+                <div class="border-2 inline-block border-black bg-sky-200" v-show="mostrar_input">
+                    <label class="m-2" for="password">Ingrese la contraseña para ser administrador: </label>
+                    <input class="rounded-lg" type="text" v-model="password" name="password" value="password">
+                    <span
+                        class="py-2 px-3 m-2 inline-block border-2 border-green-500 rounded-lg bg-green-300 cursor-pointer hover:bg-green-200"
+                        @click="putAdmin()"
+                    >
+                        Aceptar
+                    </span>
+                    <span
+                        class="py-2 px-3 m-2 inline-block border-2 border-red-500 rounded-lg bg-red-300 cursor-pointer hover:bg-red-200"
+                        @click="mostrar_input = false"
+                    >
+                        Cancelar
+                    </span>
+                </div>
                 <div v-if="proyectores.length != 0">
                     <h1 class="mb-2 pb-4 font-bold">Proyectores</h1>
                     <section class="w-4/5 mx-auto grid grid-cols-3">
@@ -69,6 +92,8 @@ export default {
             proyectores: [''],
             mostrar_componente_apartar: false,
             id_elemento: 0,
+            mostrar_input: false,
+            password: '',
         }
     },
     components:{
@@ -85,6 +110,11 @@ export default {
             const api = `get-proyectores`;
             const data = await axios.get(api);
             this.proyectores = data.data;
+        },
+        async putAdmin(){
+            const api = `put-admin/${ this.password }`;
+            const data = await axios.put(api)
+            this.mostrar_input = false;
         },
         componenteApartar(id){
             this.mostrar_componente_apartar = true;

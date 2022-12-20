@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('proyector_id');
             $table->foreign('proyector_id')->references('id')->on('proyectores');
             $table->string('horario');
+            $table->integer('estado')->default(1); //1:no_recogido, 2:recogido, 3:devuelto
             $table->integer('baja')->default(0);
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ use App\Models\Proyector_hora;
 use App\Models\Proyectores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ProyectorHoraController extends Controller
 {
@@ -16,12 +17,23 @@ class ProyectorHoraController extends Controller
      */
     public function index()
     {
-        //
+        return Redirect::route('admin.proyectores.index');
     }
 
     public function getReservas($proyector_id){
         $reservas = Proyector_hora::where('baja',0)->where('proyector_id',$proyector_id)->get();
         return $reservas;
+    }
+
+    public function getApartados(){
+        $apartados = Proyector_hora::with('user','proyector')->where('baja',0)->get();
+        return $apartados;
+    }
+
+    public function cambiarEstado($apartado_id,$estado){
+        $apartado = Proyector_hora::find($apartado_id);
+        $apartado->estado = $estado;
+        $apartado->save();        
     }
 
     /**
@@ -42,7 +54,18 @@ class ProyectorHoraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $res = $request->validate([
+            'proyector_id' => 'required',
+            'horario' => 'required'
+        ]);
+        Proyector_hora::create([
+            'user_id' => $user->id,
+            'proyector_id' => $request->proyector_id,
+            'horario' => $request->horario,
+        ]);
+
+        return $res;
     }
 
     /**

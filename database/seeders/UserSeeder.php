@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             'name' => 'Jorge León Caballero',
             'email' => 'leon@ipn.mx',
             'password' => bcrypt('987654321'),
-            'username' => 'ABC123'
+            'username' => 'ABC123',
+            'role_id' => 666,
         ])->assignRole('Super-usuario');
     }
 }

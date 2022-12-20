@@ -14,7 +14,7 @@ class Proyector_hora extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function proyectores(){
+    public function proyector(){
         return $this->belongsTo(Proyectores::class);
     }
 }

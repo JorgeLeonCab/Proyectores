@@ -80,19 +80,8 @@
         },
         mounted(){
             this.getReservas();
-            this.prueba();
         },
         methods: {
-            prueba(){
-                let x = '100';
-                let hoy = new Date();
-                this.hora_actual = hoy.toLocaleString();
-                console.log(this.hora_actual[this.hora_actual.indexOf(',') + 2]);
-                console.log(this.hora_actual);
-                console.log(x + 1);
-                let y = Number(x);
-                console.log(y);
-            },
             async getReservas(){
                 const api =`get-reservas/${this.id_elemento}`;
                 const data = await axios.get(api);
@@ -112,7 +101,7 @@
                     proyector_id:this.id_elemento,
                     horario:this.selected,
                 };
-                const response = await axios.post('proyectores',data);
+                const response = await axios.post('proyectores-hora',data);
                 console.log(response);
                 this.emitCierraComponente()
             },

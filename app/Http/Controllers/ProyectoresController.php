@@ -23,7 +23,13 @@ class ProyectoresController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return Inertia::render("proyectores_profesor/index");
+        if($user->role_id == 2){
+            return Inertia::render("proyectores_profesor/index");
+        }
+
+        if($user->role_id == 666){
+            return Inertia::render("proyectores_admin/index");
+        }
     }
 
     public function getProyectores(){
@@ -50,15 +56,13 @@ class ProyectoresController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
         $res = $request->validate([
-            'proyector_id' => 'required',
-            'horario' => 'required'
+            'name' => 'required',
+            'numero_serie' => 'required'
         ]);
-        Proyector_hora::create([
-            'user_id' => $user->id,
-            'proyector_id' => $request->proyector_id,
-            'horario' => $request->horario,
+        Proyectores::create([
+            'name' => $request->name,
+            'numero_serie' => $request->numero_serie
         ]);
 
         return $res;
