@@ -55,6 +55,10 @@ Route::put("cambiar-estado/{apartado_id}/{estado}",[ProyectorHoraController::cla
 ->middleware(['auth:sanctum','verified'])
 ->name('admin.cambiar-estado');
 
+Route::get("put-admin/{password}",[UserController::class, "putAdmin"])
+->middleware(['auth:sanctum','verified'])
+->name('admin.put-admin');
+
 // Route::get("set-admin",[UserController::class,"setAdmin"])
 // ->middleware(['auth:sanctum','verified'])
 // ->name('admin.set-admin');

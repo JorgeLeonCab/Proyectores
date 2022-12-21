@@ -27,7 +27,7 @@ class ProyectoresController extends Controller
             return Inertia::render("proyectores_profesor/index");
         }
 
-        if($user->role_id == 666){
+        if($user->role_id == 666 || $user->role_id == 3){
             return Inertia::render("proyectores_admin/index");
         }
     }

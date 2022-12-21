@@ -113,7 +113,11 @@ export default {
         },
         async putAdmin(){
             const api = `put-admin/${ this.password }`;
-            const data = await axios.put(api)
+            const response = await axios.get(api);
+            console.log(response.data);
+            if(response.data != "error"){
+                window.location.href = "http://proyectores.test/proyectores";
+            }
             this.mostrar_input = false;
         },
         componenteApartar(id){
