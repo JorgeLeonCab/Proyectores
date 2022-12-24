@@ -9,7 +9,7 @@
             <div class="p-5 rounded-md mt-5 mx-auto w-3/4 bg-sky-100 shadow-lg">
                 <span 
                     class="p-3 m-3 inline-block border-2 border-green-500 rounded-lg bg-green-300 cursor-pointer hover:bg-green-200"
-                    @click="mostrar_input = true"
+                    @click="mostrar_input = !mostrar_input"
                 >
                     Convertirme en administrador
                 </span>

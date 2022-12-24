@@ -15,7 +15,7 @@ class UserController extends Controller
             $user = User::find($usuario_log->id);
             $user->role_id = 3;
             $user->save();
-            return Redirect::route('admin.proyectores.index');
+            return 'success';
         }else{
             return "error";
         }
